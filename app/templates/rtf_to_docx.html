@@ -8,36 +8,51 @@
 
 <div class="container py-5">
 
-    <a href="/" class="btn btn-secondary mb-4">
-        Voltar
-    </a>
+    <div class="card page-card">
 
-    <h1 class="mb-4">RTF para DOCX</h1>
+        <div class="card-body p-4">
 
-    <form
-        method="POST"
-        enctype="multipart/form-data">
+            <a href="/"
+               class="btn btn-outline-secondary mb-4">
+                Voltar
+            </a>
 
-        <div class="mb-3">
-            <label class="form-label">
-                Selecione um arquivo RTF
-            </label>
+            <h2>
+                RTF → DOCX
+            </h2>
 
-            <input
-                type="file"
-                name="arquivo"
-                class="form-control"
-                accept=".rtf"
-                required>
+            <p class="text-muted">
+                Selecione um arquivo RTF para conversão.
+            </p>
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Selecione um arquivo RTF
+                    </label>
+
+                    <input
+                        type="file"
+                        name="arquivo"
+                        class="form-control"
+                        accept=".rtf"
+                        required>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Converter
+                </button>
+
+            </form>
+
         </div>
 
-        <button
-            type="submit"
-            class="btn btn-primary">
-            Converter
-        </button>
-
-    </form>
+    </div>
 
 </div>
 
