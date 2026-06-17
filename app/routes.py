@@ -48,9 +48,6 @@ def rtf_docx():
             caminho_docx
         )
 
-        print("DOCX:", caminho_docx)
-        print("EXISTE:", caminho_docx.exists())
-
         return send_file(
             str(caminho_docx),
             as_attachment=True
