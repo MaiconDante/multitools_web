@@ -55,3 +55,7 @@ def rtf_docx():
 
     return render_template("rtf_to_docx.html")
 
+
+@main.route("/rtf-docx-lote")
+def rtf_docx_lote():
+    return render_template("rtf_to_docx_batch.html")
