@@ -19,7 +19,9 @@
 
         <h1 class="mb-4">RTF para DOCX</h1>
 
-        <form>
+        <form
+            method="POST"
+            enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label">
@@ -28,8 +30,10 @@
 
                 <input
                     type="file"
+                    name="arquivo"
                     class="form-control"
-                    accept=".rtf">
+                    accept=".rtf"
+                    required>
             </div>
 
             <button
