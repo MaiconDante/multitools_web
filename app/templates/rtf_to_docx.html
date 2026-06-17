@@ -1,51 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RTF para DOCX</title>
+{% block title %}
+    RTF para DOCX
+{% endblock %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% block content %}
 
-<body>
+<div class="container py-5">
 
-    <div class="container py-5">
+    <a href="/" class="btn btn-secondary mb-4">
+        Voltar
+    </a>
 
-        <a href="/" class="btn btn-secondary mb-4">
-            Voltar
-        </a>
+    <h1 class="mb-4">RTF para DOCX</h1>
 
-        <h1 class="mb-4">RTF para DOCX</h1>
+    <form
+        method="POST"
+        enctype="multipart/form-data">
 
-        <form
-            method="POST"
-            enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">
+                Selecione um arquivo RTF
+            </label>
 
-            <div class="mb-3">
-                <label class="form-label">
-                    Selecione um arquivo RTF
-                </label>
+            <input
+                type="file"
+                name="arquivo"
+                class="form-control"
+                accept=".rtf"
+                required>
+        </div>
 
-                <input
-                    type="file"
-                    name="arquivo"
-                    class="form-control"
-                    accept=".rtf"
-                    required>
-            </div>
+        <button
+            type="submit"
+            class="btn btn-primary">
+            Converter
+        </button>
 
-            <button
-                type="submit"
-                class="btn btn-primary">
-                Converter
-            </button>
+    </form>
 
-        </form>
+</div>
 
-    </div>
-
-</body>
-
-</html>
+{% endblock %}
