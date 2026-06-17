@@ -11,6 +11,10 @@ from app.services.rtf_to_docx import (
     converter_rtf_para_docx
 )
 
+from app.services.batch_converter import (
+    converter_lote_rtf_para_docx
+)
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 main = Blueprint("main", __name__)
@@ -56,6 +60,38 @@ def rtf_docx():
     return render_template("rtf_to_docx.html")
 
 
-@main.route("/rtf-docx-lote")
+@main.route(
+    "/rtf-docx-lote",
+    methods=["GET", "POST"]
+)
 def rtf_docx_lote():
-    return render_template("rtf_to_docx_batch.html")
+
+    if request.method == "POST":
+
+        arquivos = request.files.getlist("arquivos")
+
+        if not arquivos:
+            return render_template(
+                "rtf_to_docx_batch.html"
+            )
+
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        zip_path = converter_lote_rtf_para_docx(
+            arquivos,
+            uploads,
+            outputs
+        )
+
+        return send_file(
+            str(zip_path),
+            as_attachment=True
+        )
+
+    return render_template(
+        "rtf_to_docx_batch.html"
+    )
