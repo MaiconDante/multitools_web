@@ -1,0 +1,56 @@
+# Ambiente Virtual
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Dependências
+.venv
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Banco de dados e sessões locais
+instance/
+*.db
+*.sqlite
+*.sqlite3
+.webassets-cache
+.flask_sess
+
+# Arquivos de ambiente e chaves secretas (MUITO IMPORTANTE!)
+.env
+.env.local
+.flaskenv
+
+# Logs
+*.log
+logs/
+
+# Cobertura de testes e relatórios
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Arquivos de IDE e Sistema Operacional
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
