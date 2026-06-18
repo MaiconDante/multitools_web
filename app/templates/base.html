@@ -24,13 +24,46 @@
 
 <body>
 
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+
+        <div class="container">
+
+            <a class="navbar-brand mx-auto" href="/">
+
+                <img
+                    src="{{ url_for('static', filename='images/multitools.png') }}"
+                    alt="Multitools Web Logo"
+                    class="navbar-logo">
+
+            </a>
+
+        </div>
+
+    </nav>
+
     {% block content %}
     {% endblock %}
 
-    <footer class="text-center py-4 mt-5">
-        <small class="text-muted">
-            Multitools Web • Versão 1.0 &trade; 2026
-        </small>
+    <footer class="footer-custom mt-5">
+
+        <div class="container text-center">
+
+            <h6 class="mb-2">
+                Multitools Web
+            </h6>
+
+            <small>
+                Conversão e ferramentas de produtividade para documentos Word Online.
+            </small>
+
+            <br>
+
+            <small>
+                Versão 1.0
+            </small>
+
+        </div>
+
     </footer>
 
 </body>

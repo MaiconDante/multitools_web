@@ -47,3 +47,30 @@ body {
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
+
+/* Navbar */
+
+.navbar-custom {
+    background-color: #f5aa55;
+    padding: 1rem;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 1.3rem;
+}
+
+/* Rodapé */
+
+.footer-custom {
+    background-color: #063d74;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.navbar-logo {
+    max-height: 90px;
+    width: auto;
+    display: block;
+}
