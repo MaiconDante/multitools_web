@@ -54,3 +54,11 @@ cover/
 *.swo
 .DS_Store
 Thumbs.db
+
+uploads/
+outputs/
+
+.idea/
+.vscode/
+
+*.log
