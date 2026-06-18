@@ -15,6 +15,8 @@ from app.services.batch_converter import (
     converter_lote_rtf_para_docx
 )
 
+from app.services.file_cleanup import limpar_pasta
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 main = Blueprint("main", __name__)
@@ -28,16 +30,19 @@ def rtf_docx():
 
     if request.method == "POST":
 
-        arquivo = request.files.get("arquivo")
-
-        if not arquivo:
-            return render_template("rtf_to_docx.html")
-
         uploads = BASE_DIR / "uploads"
         outputs = BASE_DIR / "outputs"
 
         uploads.mkdir(exist_ok=True)
         outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
+        arquivo = request.files.get("arquivo")
+
+        if not arquivo:
+            return render_template("rtf_to_docx.html")
 
         caminho_rtf = uploads / arquivo.filename
 
@@ -68,18 +73,21 @@ def rtf_docx_lote():
 
     if request.method == "POST":
 
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
         arquivos = request.files.getlist("arquivos")
 
         if not arquivos:
             return render_template(
                 "rtf_to_docx_batch.html"
             )
-
-        uploads = BASE_DIR / "uploads"
-        outputs = BASE_DIR / "outputs"
-
-        uploads.mkdir(exist_ok=True)
-        outputs.mkdir(exist_ok=True)
 
         zip_path = converter_lote_rtf_para_docx(
             arquivos,
