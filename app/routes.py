@@ -4,9 +4,8 @@ from flask import (
     Blueprint,
     render_template,
     request,
-    send_file
+    send_file,
 )
-
 from app.services.rtf_to_docx import (
     converter_rtf_para_docx
 )
@@ -40,9 +39,6 @@ def rtf_docx():
         limpar_pasta(outputs)
 
         arquivo = request.files.get("arquivo")
-
-        if not arquivo:
-            return render_template("rtf_to_docx.html")
 
         caminho_rtf = uploads / arquivo.filename
 
