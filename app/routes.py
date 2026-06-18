@@ -95,3 +95,21 @@ def rtf_docx_lote():
     return render_template(
         "rtf_to_docx_batch.html"
     )
+
+@main.route("/rtf-doc")
+def rtf_doc():
+    return render_template(
+        "em_desenvolvimento.html"
+    )
+
+@main.route("/pdf-docx")
+def pdf_docx():
+    return render_template(
+        "em_desenvolvimento.html"
+    )
+
+@main.route("/pdf-ocr-docx")
+def pdf_ocr_docx():
+    return render_template(
+        "em_desenvolvimento.html"
+    )
