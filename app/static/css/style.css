@@ -111,3 +111,24 @@ body {
     }
 
 }
+
+/* Banner das ferramentas */
+
+.converter-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.converter-banner img {
+    width: 80px;
+    height: auto;
+}
+
+.converter-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6F4E37;
+}

@@ -17,11 +17,29 @@
                 Voltar
             </a>
 
-            <h2>
-                RTF → DOCX
+            <div class="converter-banner">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/rtf.svg') }}"
+                    alt="RTF">
+
+                <span class="converter-arrow">
+                    →
+                </span>
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/word.svg') }}"
+                    alt="DOCX">
+
+            </div>
+
+            <h2 class="text-center">
+                RTF para DOCX
             </h2>
 
-            <p class="text-muted">
+            <p class="text-muted text-center">
                 Selecione um arquivo RTF para conversão.
             </p>
 

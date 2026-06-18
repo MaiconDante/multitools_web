@@ -17,12 +17,30 @@
                 Voltar
             </a>
 
-            <h2>
+            <div class="converter-banner">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/rtf.svg') }}"
+                    alt="RTF">
+
+                <span class="converter-arrow">
+                    📦
+                </span>
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/word.svg') }}"
+                    alt="DOCX">
+
+            </div>
+
+            <h2 class="text-center">
                 RTF → DOCX (Lotes)
             </h2>
 
-            <p class="text-muted">
-                Selecione vários arquivos RTF para conversão em lote.
+            <p class="text-muted text-center">
+                Selecione vários arquivos RTF para conversão em DOCX.
             </p>
 
             <form
