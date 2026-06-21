@@ -18,6 +18,8 @@ from app.services.pdf_to_docx import (
     converter_pdf_para_docx
 )
 
+from app.services.qr_code import gerar_qrcode
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -104,10 +106,43 @@ def rtf_docx_lote():
         "rtf_to_docx_batch.html"
     )
 
-@main.route("/rtf-doc")
-def rtf_doc():
+@main.route(
+    "/qr-code",
+    methods=["GET", "POST"]
+)
+def qr_code():
+
+    if request.method == "POST":
+
+        outputs = BASE_DIR / "outputs"
+
+        outputs.mkdir(
+            exist_ok=True
+        )
+
+        limpar_pasta(outputs)
+
+
+        texto = request.form["texto"]
+
+
+        arquivo = outputs / "qrcode.png"
+
+
+        gerar_qrcode(
+            texto,
+            arquivo
+        )
+
+
+        return send_file(
+            arquivo,
+            as_attachment=True
+        )
+
+
     return render_template(
-        "em_desenvolvimento.html"
+        "qr_code.html"
     )
 
 @main.route(
