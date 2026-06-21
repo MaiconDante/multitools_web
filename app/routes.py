@@ -14,6 +14,10 @@ from app.services.batch_converter import (
     converter_lote_rtf_para_docx
 )
 
+from app.services.pdf_to_docx import (
+    converter_pdf_para_docx
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,11 +110,47 @@ def rtf_doc():
         "em_desenvolvimento.html"
     )
 
-@main.route("/pdf-docx")
+@main.route(
+    "/pdf-docx",
+    methods=["GET", "POST"]
+)
 def pdf_docx():
+
+    if request.method == "POST":
+
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
+        arquivo = request.files["arquivo"]
+
+        pdf_path = uploads / arquivo.filename
+
+        arquivo.save(pdf_path)
+
+        docx_path = outputs / (
+            pdf_path.stem + ".docx"
+        )
+
+        converter_pdf_para_docx(
+            pdf_path,
+            docx_path
+        )
+
+        return send_file(
+            docx_path,
+            as_attachment=True
+        )
+
     return render_template(
-        "em_desenvolvimento.html"
+        "pdf_to_docx.html"
     )
+
 
 @main.route("/pdf-ocr-docx")
 def pdf_ocr_docx():
