@@ -38,6 +38,10 @@ from app.services.image_rotate import (
     rotacionar_imagem
 )
 
+from app.services.image_document_straight import (
+    endireitar_documento
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -377,4 +381,86 @@ def image_rotate():
 
     return render_template(
         "image_rotate.html"
+    )
+
+@main.route(
+    "/document-straight",
+    methods=["GET","POST"]
+)
+def document_straight():
+
+
+    if request.method == "POST":
+
+
+        uploads = BASE_DIR / "uploads"
+
+        outputs = BASE_DIR / "outputs"
+
+
+
+        uploads.mkdir(
+            exist_ok=True
+        )
+
+        outputs.mkdir(
+            exist_ok=True
+        )
+
+
+
+        limpar_pasta(uploads)
+
+        limpar_pasta(outputs)
+
+
+
+        arquivo = request.files["arquivo"]
+
+
+
+        entrada = uploads / arquivo.filename
+
+
+
+        arquivo.save(
+            entrada
+        )
+
+
+
+        saida = outputs / (
+
+            entrada.stem +
+
+            "_corrigido.jpg"
+
+        )
+
+
+
+        endireitar_documento(
+
+            entrada,
+
+            saida
+
+        )
+
+
+
+        return send_file(
+
+            saida,
+
+            as_attachment=True
+
+        )
+
+
+
+    return render_template(
+
+        "image_document_straight.html"
+
     )
