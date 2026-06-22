@@ -46,6 +46,10 @@ from app.services.pdf_compress import (
     comprimir_pdf
 )
 
+from app.services.image_to_pdf import (
+    imagem_para_pdf
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -551,3 +555,84 @@ def pdf_compress():
 
     )
 
+@main.route(
+    "/image-to-pdf",
+    methods=["GET","POST"]
+)
+def image_to_pdf():
+
+
+    if request.method == "POST":
+
+
+        uploads = BASE_DIR / "uploads"
+
+        outputs = BASE_DIR / "outputs"
+
+
+
+        uploads.mkdir(
+            exist_ok=True
+        )
+
+        outputs.mkdir(
+            exist_ok=True
+        )
+
+
+
+        limpar_pasta(uploads)
+
+        limpar_pasta(outputs)
+
+
+
+        arquivo = request.files["arquivo"]
+
+
+
+        entrada = uploads / arquivo.filename
+
+
+
+        arquivo.save(
+            entrada
+        )
+
+
+
+        saida = outputs / (
+
+            entrada.stem +
+
+            ".pdf"
+
+        )
+
+
+
+        imagem_para_pdf(
+
+            entrada,
+
+            saida
+
+        )
+
+
+
+        return send_file(
+
+            saida,
+
+            as_attachment=True
+
+        )
+
+
+
+    return render_template(
+
+        "image_to_pdf.html"
+
+    )
