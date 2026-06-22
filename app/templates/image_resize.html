@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}
+Redimensionar Imagem
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card page-card">
+
+        <div class="card-body p-4">
+
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+                Voltar
+            </a>
+
+            <div class="converter-banner">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/multicolor.svg') }}"
+                    alt="Imagem">
+
+                <span class="converter-arrow">
+                    →
+                </span>
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/resize.svg') }}"
+                    alt="Resize">
+
+            </div>
+
+            <h2 class="text-center">
+                Redimensionar Imagem
+            </h2>
+
+            <p class="text-muted text-center">
+                Redimensione imagens utilizando OpenCV.
+            </p>
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Imagem
+                    </label>
+
+                    <input
+                        type="file"
+                        name="arquivo"
+                        class="form-control"
+                        accept=".jpg,.jpeg,.png"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Largura
+                    </label>
+
+                    <input
+                        type="number"
+                        name="largura"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Altura
+                    </label>
+
+                    <input
+                        type="number"
+                        name="altura"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Redimensionar
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

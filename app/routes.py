@@ -30,6 +30,10 @@ from app.services.image_grayscale import (
     converter_para_cinza
 )
 
+from app.services.image_resize import (
+    redimensionar_imagem
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -266,4 +270,58 @@ def image_grayscale():
 
     return render_template(
         "image_grayscale.html"
+    )
+
+@main.route(
+    "/image-resize",
+    methods=["GET", "POST"]
+)
+def image_resize():
+
+    if request.method == "POST":
+
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
+        arquivo = request.files["arquivo"]
+
+        largura = int(
+            request.form["largura"]
+        )
+
+        altura = int(
+            request.form["altura"]
+        )
+
+        imagem_entrada = uploads / arquivo.filename
+
+        arquivo.save(
+            imagem_entrada
+        )
+
+        imagem_saida = outputs / (
+            imagem_entrada.stem +
+            "_resize.jpg"
+        )
+
+        redimensionar_imagem(
+            imagem_entrada,
+            imagem_saida,
+            largura,
+            altura
+        )
+
+        return send_file(
+            imagem_saida,
+            as_attachment=True
+        )
+
+    return render_template(
+        "image_resize.html"
     )
