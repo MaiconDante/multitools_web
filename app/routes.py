@@ -42,6 +42,10 @@ from app.services.image_document_straight import (
     endireitar_documento
 )
 
+from app.services.pdf_compress import (
+    comprimir_pdf
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -464,3 +468,86 @@ def document_straight():
         "image_document_straight.html"
 
     )
+
+@main.route(
+    "/pdf-compress",
+    methods=["GET","POST"]
+)
+def pdf_compress():
+
+
+    if request.method == "POST":
+
+
+        uploads = BASE_DIR / "uploads"
+
+        outputs = BASE_DIR / "outputs"
+
+
+
+        uploads.mkdir(
+            exist_ok=True
+        )
+
+        outputs.mkdir(
+            exist_ok=True
+        )
+
+
+
+        limpar_pasta(uploads)
+
+        limpar_pasta(outputs)
+
+
+
+        arquivo = request.files["arquivo"]
+
+
+
+        entrada = uploads / arquivo.filename
+
+
+
+        arquivo.save(
+            entrada
+        )
+
+
+
+        saida = outputs / (
+
+            entrada.stem +
+
+            "_comprimido.pdf"
+
+        )
+
+
+
+        comprimir_pdf(
+
+            entrada,
+
+            saida
+
+        )
+
+
+
+        return send_file(
+
+            saida,
+
+            as_attachment=True
+
+        )
+
+
+
+    return render_template(
+
+        "pdf_compress.html"
+
+    )
+

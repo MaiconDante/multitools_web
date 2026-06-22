@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}
+Comprimir PDF
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card page-card">
+
+        <div class="card-body p-4">
+
+
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+
+                Voltar
+
+            </a>
+
+
+
+            <div class="converter-banner">
+
+
+                <img
+                    src="{{ url_for(
+                    'static',
+                    filename='images/tools/pdf.svg'
+                    ) }}"
+                    alt="PDF">
+
+
+
+                <span class="converter-arrow">
+
+                    →
+
+                </span>
+
+
+
+                <img
+                    src="{{ url_for(
+                    'static',
+                    filename='images/tools/compress.svg'
+                    ) }}"
+                    alt="Compressão">
+
+
+            </div>
+
+
+
+
+            <h2 class="text-center">
+
+                Comprimir PDF
+
+            </h2>
+
+
+
+
+            <p class="text-muted text-center">
+
+                Reduza o tamanho de arquivos PDF convertendo documentos pesados em versões otimizadas.
+
+            </p>
+
+
+
+
+            <form
+
+                method="POST"
+
+                enctype="multipart/form-data">
+
+
+
+                <div class="mb-3">
+
+
+                    <label class="form-label">
+
+                        Selecione um PDF
+
+                    </label>
+
+
+
+                    <input
+
+                        type="file"
+
+                        name="arquivo"
+
+                        class="form-control"
+
+                        accept=".pdf"
+
+                        required>
+
+
+                </div>
+
+
+
+
+                <button
+
+                    type="submit"
+
+                    class="btn btn-primary">
+
+
+                    Comprimir PDF
+
+
+                </button>
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
