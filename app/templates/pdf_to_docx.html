@@ -6,80 +6,84 @@ PDF para DOCX
 
 {% block content %}
 
-<div class="card page-card">
+<div class="container py-5">
 
-    <div class="card-body p-4">
+    <div class="card page-card">
 
-        <a href="/"
-           class="btn btn-outline-secondary mb-4">
-            Voltar
-        </a>
+        <div class="card-body p-4">
 
-
-        <div class="converter-banner">
-
-            <img
-                src="{{ url_for('static',
-                filename='images/tools/pdf.svg') }}"
-                alt="PDF">
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+                Voltar
+            </a>
 
 
-            <span class="converter-arrow">
-                →
-            </span>
+            <div class="converter-banner">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/pdf.svg') }}"
+                    alt="PDF">
 
 
-            <img
-                src="{{ url_for('static',
-                filename='images/tools/word.svg') }}"
-                alt="DOCX">
-
-        </div>
+                <span class="converter-arrow">
+                    →
+                </span>
 
 
-        <h2 class="text-center">
-            PDF para DOCX
-        </h2>
-
-
-        <p class="text-muted text-center">
-            Converta arquivos PDF com texto para documentos DOCX editáveis.
-        </p>
-
-
-        <form
-            method="POST"
-            enctype="multipart/form-data">
-
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Selecione um arquivo PDF
-                </label>
-
-
-                <input
-                    type="file"
-                    name="arquivo"
-                    class="form-control"
-                    accept=".pdf"
-                    required>
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/word.svg') }}"
+                    alt="DOCX">
 
             </div>
 
 
-            <button
-                type="submit"
-                class="btn btn-primary">
-
-                Converter
-
-            </button>
+            <h2 class="text-center">
+                PDF para DOCX
+            </h2>
 
 
-        </form>
+            <p class="text-muted text-center">
+                Converta arquivos PDF com texto para documentos DOCX editáveis.
+            </p>
 
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Selecione um arquivo PDF
+                    </label>
+
+
+                    <input
+                        type="file"
+                        name="arquivo"
+                        class="form-control"
+                        accept=".pdf"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Converter
+
+                </button>
+
+
+            </form>
+
+
+        </div>
 
     </div>
 

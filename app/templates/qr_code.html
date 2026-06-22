@@ -7,72 +7,76 @@ Gerar QR Code
 
 {% block content %}
 
-<div class="card page-card">
+<div class="container py-5">
 
-    <div class="card-body p-4">
+    <div class="card page-card">
 
-
-        <a href="/"
-           class="btn btn-outline-secondary mb-4">
-            Voltar
-        </a>
+        <div class="card-body p-4">
 
 
-        <div class="converter-banner">
-
-            <img
-                src="{{ url_for('static',
-                filename='images/tools/qr.svg') }}"
-                alt="QR Code">
-
-        </div>
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+                Voltar
+            </a>
 
 
-        <h2 class="text-center">
-            Gerar QR Code
-        </h2>
+            <div class="converter-banner">
 
-
-        <p class="text-muted text-center">
-            Digite um texto ou link para gerar seu QR Code.
-        </p>
-
-
-        <form
-            method="POST">
-
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Texto ou URL
-                </label>
-
-
-                <input
-                    type="text"
-                    name="texto"
-                    class="form-control"
-                    placeholder="Digite aqui..."
-                    required>
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/qr.svg') }}"
+                    alt="QR Code">
 
             </div>
 
 
-            <button
-                type="submit"
-                class="btn btn-primary">
-
+            <h2 class="text-center">
                 Gerar QR Code
+            </h2>
 
-            </button>
+
+            <p class="text-muted text-center">
+                Digite um texto ou link para gerar seu QR Code.
+            </p>
 
 
-        </form>
+            <form
+                method="POST">
 
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Texto ou URL
+                    </label>
+
+
+                    <input
+                        type="text"
+                        name="texto"
+                        class="form-control"
+                        placeholder="Digite aqui..."
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Gerar QR Code
+
+                </button>
+
+
+            </form>
+
+
+        </div>
 
     </div>
-
+    
 </div>
 
 

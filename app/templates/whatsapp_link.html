@@ -6,92 +6,96 @@ Link WhatsApp
 
 {% block content %}
 
-<div class="card page-card">
+<div class="container py-5">
 
-    <div class="card-body p-4">
+    <div class="card page-card">
 
-        <a href="/"
-           class="btn btn-outline-secondary mb-4">
-            Voltar
-        </a>
+        <div class="card-body p-4">
 
-        <div class="converter-banner">
-
-            <img
-                src="{{ url_for('static',
-                filename='images/tools/whats.svg') }}"
-                alt="WhatsApp">
-
-        </div>
-
-        <h2 class="text-center">
-            Gerar Link WhatsApp
-        </h2>
-
-        <p class="text-muted text-center">
-            Gere links prontos para compartilhar no WhatsApp.
-        </p>
-
-        <form method="POST">
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Telefone
-                </label>
-
-                <input
-                    type="text"
-                    name="telefone"
-                    class="form-control"
-                    placeholder="5514999999999"
-                    required>
-
-            </div>
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Mensagem
-                </label>
-
-                <textarea
-                    name="mensagem"
-                    class="form-control"
-                    rows="4"
-                    required></textarea>
-
-            </div>
-
-            <button
-                type="submit"
-                class="btn btn-primary">
-
-                Gerar Link
-
-            </button>
-
-        </form>
-
-        {% if link %}
-
-        <div class="alert alert-success mt-4">
-
-            <strong>Link gerado:</strong>
-
-            <br>
-
-            <a
-                href="{{ link }}"
-                target="_blank">
-
-                {{ link }}
-
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+                Voltar
             </a>
 
-        </div>
+            <div class="converter-banner">
 
-        {% endif %}
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/whats.svg') }}"
+                    alt="WhatsApp">
+
+            </div>
+
+            <h2 class="text-center">
+                Gerar Link WhatsApp
+            </h2>
+
+            <p class="text-muted text-center">
+                Gere links prontos para compartilhar no WhatsApp.
+            </p>
+
+            <form method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="text"
+                        name="telefone"
+                        class="form-control"
+                        placeholder="5514999999999"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Mensagem
+                    </label>
+
+                    <textarea
+                        name="mensagem"
+                        class="form-control"
+                        rows="4"
+                        required></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Gerar Link
+
+                </button>
+
+            </form>
+
+            {% if link %}
+
+            <div class="alert alert-success mt-4">
+
+                <strong>Link gerado:</strong>
+
+                <br>
+
+                <a
+                    href="{{ link }}"
+                    target="_blank">
+
+                    {{ link }}
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
 
     </div>
 
