@@ -18,7 +18,13 @@ from app.services.pdf_to_docx import (
     converter_pdf_para_docx
 )
 
-from app.services.qr_code import gerar_qrcode
+from app.services.qr_code import ( 
+    gerar_qrcode
+)
+
+from app.services.whatsapp_link import (
+    gerar_link_whatsapp
+)
 
 from app.services.file_cleanup import limpar_pasta
 
@@ -191,4 +197,28 @@ def pdf_docx():
 def pdf_ocr_docx():
     return render_template(
         "em_desenvolvimento.html"
+    )
+
+@main.route(
+    "/whatsapp-link",
+    methods=["GET", "POST"]
+)
+def whatsapp_link():
+
+    link = None
+
+    if request.method == "POST":
+
+        telefone = request.form["telefone"]
+
+        mensagem = request.form["mensagem"]
+
+        link = gerar_link_whatsapp(
+            telefone,
+            mensagem
+        )
+
+    return render_template(
+        "whatsapp_link.html",
+        link=link
     )
