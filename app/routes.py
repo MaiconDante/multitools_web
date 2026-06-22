@@ -34,6 +34,10 @@ from app.services.image_resize import (
     redimensionar_imagem
 )
 
+from app.services.image_rotate import (
+    rotacionar_imagem
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -324,4 +328,53 @@ def image_resize():
 
     return render_template(
         "image_resize.html"
+    )
+
+@main.route(
+    "/image-rotate",
+    methods=["GET", "POST"]
+)
+def image_rotate():
+
+    if request.method == "POST":
+
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
+        arquivo = request.files["arquivo"]
+
+        angulo = float(
+            request.form["angulo"]
+        )
+
+        imagem_entrada = uploads / arquivo.filename
+
+        arquivo.save(
+            imagem_entrada
+        )
+
+        imagem_saida = outputs / (
+            imagem_entrada.stem +
+            "_rotacionada.jpg"
+        )
+
+        rotacionar_imagem(
+            imagem_entrada,
+            imagem_saida,
+            angulo
+        )
+
+        return send_file(
+            imagem_saida,
+            as_attachment=True
+        )
+
+    return render_template(
+        "image_rotate.html"
     )
