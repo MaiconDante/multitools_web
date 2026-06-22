@@ -26,6 +26,10 @@ from app.services.whatsapp_link import (
     gerar_link_whatsapp
 )
 
+from app.services.image_grayscale import (
+    converter_para_cinza
+)
+
 from app.services.file_cleanup import limpar_pasta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -221,4 +225,45 @@ def whatsapp_link():
     return render_template(
         "whatsapp_link.html",
         link=link
+    )
+
+@main.route(
+    "/image-grayscale",
+    methods=["GET", "POST"]
+)
+def image_grayscale():
+
+    if request.method == "POST":
+
+        uploads = BASE_DIR / "uploads"
+        outputs = BASE_DIR / "outputs"
+
+        uploads.mkdir(exist_ok=True)
+        outputs.mkdir(exist_ok=True)
+
+        limpar_pasta(uploads)
+        limpar_pasta(outputs)
+
+        arquivo = request.files["arquivo"]
+
+        imagem_entrada = uploads / arquivo.filename
+
+        arquivo.save(imagem_entrada)
+
+        imagem_saida = outputs / (
+            imagem_entrada.stem + "_cinza.jpg"
+        )
+
+        converter_para_cinza(
+            imagem_entrada,
+            imagem_saida
+        )
+
+        return send_file(
+            imagem_saida,
+            as_attachment=True
+        )
+
+    return render_template(
+        "image_grayscale.html"
     )

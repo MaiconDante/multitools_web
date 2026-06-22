@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Imagem para Escala de Cinza
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card page-card">
+
+        <div class="card-body p-4">
+
+            <a href="/"
+            class="btn btn-outline-secondary mb-4">
+                Voltar
+            </a>
+
+            <div class="converter-banner">
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/multicolor.svg') }}"
+                    alt="Imagem">
+
+                <span class="converter-arrow">
+                    →
+                </span>
+
+                <img
+                    src="{{ url_for('static',
+                    filename='images/tools/grayscale.svg') }}"
+                    alt="Cinza">
+
+            </div>
+
+            <h2 class="text-center">
+                Imagem para Escala de Cinza
+            </h2>
+
+            <p class="text-muted text-center">
+                Converta imagens coloridas para tons de cinza usando OpenCV.
+            </p>
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Selecione uma imagem
+                    </label>
+
+                    <input
+                        type="file"
+                        name="arquivo"
+                        class="form-control"
+                        accept=".jpg,.jpeg,.png"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Converter
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
