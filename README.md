@@ -10,6 +10,10 @@ A proposta é criar uma central de ferramentas úteis para documentos e produtiv
 
 ---
 
+![Preview da Aplicação](docs/preview.png)
+
+---
+
 ## Funcionalidades Implementadas
 
 ### Conversão de Documentos
